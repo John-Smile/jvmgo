@@ -19,7 +19,7 @@ func parseCmd() *Cmd {
     flag.StringVar(&cmd.cpOption, "classpath", "", "classpath")
     // flag.Parse()
     args := flag.Args()
-    fmt.Printf("Args: %s", flag.Args())
+    fmt.Printf("Args: %s\n", flag.Args())
     if len(args) > 0 {
          cmd.class = args[0]
          cmd.args = args[1:]

@@ -1,7 +1,7 @@
 package main
 import "fmt"
 import "strings"
-import "jvmgo/ch02/classpath"
+import "jvmgo/ch03/classpath"
 func main() {
     cmd := parseCmd()
     if cmd.versionFlag {
