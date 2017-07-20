@@ -32,7 +32,7 @@ func (self ConstantPool) getClassName(index uint16) string  {
 	return self.getUtf8(classInfo.nameIndex)
 }
 func (self ConstantPool) getUtf8(index uint16) string  {
-	utf8Info := self.getConstantInfo(index).(*ConstantUft8Info)
+	utf8Info := self.getConstantInfo(index).(*ConstantUtf8Info)
 	return utf8Info.str
 }
 
@@ -56,7 +56,7 @@ func newConstantInfo(tag uint8, cp ConstantPool) ConstantInfo {
 	case CONSTANT_Double:
 		return &ConstantDoubleInfo{}
 	case CONSTANT_Uft8:
-		return &CosntantUtf8Info{}
+		return &ConstantUtf8Info{}
 	case CONSTANT_String:
 		return &ConstantUtf8Info{cp: cp}
 	case CONSTANT_Class:
