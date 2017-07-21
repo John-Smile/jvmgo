@@ -2,7 +2,6 @@ package classfile
 
 import (
 	"fmt"
-	"go/scanner"
 )
 type ClassFile struct {
 	minorVersion        uint16
@@ -69,16 +68,16 @@ func (self *ClassFile) MajorVersion() uint16 {
 	return self.majorVersion
 }
 func (self *ClassFile) ConstantPool() ConstantPool {
-
+	return self.constantPool
 }
 func (self *ClassFile) AccessFlags() uint16 {
-
+	return self.accessFlags
 }
 func (self *ClassFile) Fields() [] *MemberInfo {
-
+	return self.fields
 }
 func (self *ClassFile) Methods() [] *MemberInfo {
-
+	return self.methods
 }
 func (self *ClassFile) ClassName() string {
 	return self.constantPool.getClassName(self.thisClass)

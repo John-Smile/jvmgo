@@ -1,7 +1,5 @@
 package classfile
 
-import "database/sql"
-
 type ConstantNameAndTypeInfo struct {
 	nameIndex                  uint16
 	descriptorIndex            uint16

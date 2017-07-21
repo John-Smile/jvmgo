@@ -1,13 +1,11 @@
 package classfile
 
-import "debug/elf"
-
 type ConstantPool [] ConstantInfo
 func readConstantPool(reader *ClassReader) ConstantPool {
 	cpCount := int(reader.readUint16())
 	cp := make([] ConstantInfo, cpCount)
 	for i := 1; i < cpCount; i++ {
-		cp[i] = readContantInfo(reader, cp)
+		cp[i] = readConstantInfo(reader, cp)
 		switch cp[i].(type) {
 		case *ConstantLongInfo, *ConstantDoubleInfo:
 			i++
@@ -58,23 +56,23 @@ func newConstantInfo(tag uint8, cp ConstantPool) ConstantInfo {
 	case CONSTANT_Uft8:
 		return &ConstantUtf8Info{}
 	case CONSTANT_String:
-		return &ConstantUtf8Info{cp: cp}
+		return &ConstantUtf8Info{}
 	case CONSTANT_Class:
 		return &ConstantClassInfo{cp: cp}
 	case CONSTANT_Fieldref:
-		return &CosntantFieldrefInfo{ConstantMemberrefInfo{cp: cp}}
+		return &ConstantFieldrefInfo{ConstantMemberrefInfo{cp: cp}}
 	case CONSTANT_Methofref:
-		return &ConstantMethodrefInfo{CosntantMemberrefInfo{cp: cp}}
+		return &ConstantMethodrefInfo{ConstantMemberrefInfo{cp: cp}}
 	case CONSTANT_InterfaceMethodref:
 		return &ConstantInterfaceMethodrefInfo{ConstantMemberrefInfo{cp: cp}}
 	case CONSTANT_NameAndType:
 		return &ConstantNameAndTypeInfo{}
-	case CONSTANT_MethodType:
-		return &ConstantMethodTypeInfo{}
-	case CONSTANT_MethodHandle:
-		return &ConstantMethodHandleInfo{}
-	case CONSTANT_InvokeDynamic:
-		return &ConstantInvokeDynamicInfo{}
+	//case CONSTANT_MethodType:
+	//	return &ConstantMethodTypeInfo{}
+	//case CONSTANT_MethodHandle:
+	//	return &ConstantMethodHandleInfo{}
+	//case CONSTANT_InvokeDynamic:
+	//	return &ConstantInvokeDynamicInfo{}
 	default:
 		panic("java.lang.ClassFormatError: constant pool tag!")
 
