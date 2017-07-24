@@ -60,7 +60,7 @@ func newConstantInfo(tag uint8, cp ConstantPool) ConstantInfo {
 	case CONSTANT_Uft8:
 		return &ConstantUtf8Info{}
 	case CONSTANT_String:
-		return &ConstantUtf8Info{}
+		return &ConstantStringInfo{cp: cp}
 	case CONSTANT_Class:
 		return &ConstantClassInfo{cp: cp}
 	case CONSTANT_Fieldref:
