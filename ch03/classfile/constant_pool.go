@@ -1,8 +1,11 @@
 package classfile
 
+import "fmt"
+
 type ConstantPool [] ConstantInfo
 func readConstantPool(reader *ClassReader) ConstantPool {
 	cpCount := int(reader.readUint16())
+	fmt.Printf("cosntants count is %d\n", cpCount)
 	cp := make([] ConstantInfo, cpCount)
 	for i := 1; i < cpCount; i++ {
 		cp[i] = readConstantInfo(reader, cp)
@@ -39,6 +42,7 @@ type ConstantInfo interface {
 }
 func readConstantInfo(reader *ClassReader, cp ConstantPool) ConstantInfo {
 	tag := reader.readUint8()
+	fmt.Printf("tag is %d\n", tag)
 	c := newConstantInfo(tag, cp)
 	c.readInfo(reader)
 	return c
@@ -67,13 +71,14 @@ func newConstantInfo(tag uint8, cp ConstantPool) ConstantInfo {
 		return &ConstantInterfaceMethodrefInfo{ConstantMemberrefInfo{cp: cp}}
 	case CONSTANT_NameAndType:
 		return &ConstantNameAndTypeInfo{}
-	//case CONSTANT_MethodType:
-	//	return &ConstantMethodTypeInfo{}
-	//case CONSTANT_MethodHandle:
-	//	return &ConstantMethodHandleInfo{}
-	//case CONSTANT_InvokeDynamic:
-	//	return &ConstantInvokeDynamicInfo{}
+	case CONSTANT_MethodType:
+		return &ConstantMethodTypeInfo{}
+	case CONSTANT_MethodHandle:
+		return &ConstantMethodHandleInfo{}
+	case CONSTANT_InvokeDynamic:
+		return &ConstantInvokeDynamicInfo{}
 	default:
+		fmt.Printf("tag is %d\n", tag)
 		panic("java.lang.ClassFormatError: constant pool tag!")
 
 	}
