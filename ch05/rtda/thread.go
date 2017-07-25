@@ -24,3 +24,6 @@ func (self *Thread)PopFrame() *Frame  {
 func (self *Thread)CurrnetFrame() *Frame  {
 	return self.stack.top()
 }
+func (self *Thread) NewFrame(maxLocals, maxStack uint) *Frame  {
+	return newFrame(self, maxLocals, maxStack)
+}
