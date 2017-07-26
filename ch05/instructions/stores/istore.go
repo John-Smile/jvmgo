@@ -24,17 +24,17 @@ func _istore(frame *rtda.Frame, index uint)  {
 	frame.LocalVars().SetInt(index, val)
 }
 func (self *ISTORE) Execute(frame *rtda.Frame)  {
-	_lstore(frame, uint(self.Index))
+	_istore(frame, uint(self.Index))
 }
 func (self *ISTORE_0) Execute(frame *rtda.Frame)  {
-	_lstore(frame, 0)
+	_istore(frame, 0)
 }
 func (self *ISTORE_1) Execute(frame *rtda.Frame)  {
-	_lstore(frame, 1)
+	_istore(frame, 1)
 }
 func (self *ISTORE_2) Execute(frame *rtda.Frame)  {
-	_lstore(frame, 2)
+	_istore(frame, 2)
 }
 func (self *ISTORE_3) Execute(frame *rtda.Frame)  {
-	_lstore(frame, 3)
+	_istore(frame, 3)
 }

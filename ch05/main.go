@@ -39,7 +39,7 @@ func loadClass(classsName string, cp *classpath.ClassPath) *classfile.ClassFile 
 }
 func getMainMethod(cf *classfile.ClassFile) *classfile.MemberInfo  {
 	for _,m := range cf.Methods() {
-		if m.Name() == "main" && m.Descriptor() == "([Ljava/lang/String;) V" {
+		if m.Name() == "main" && m.Descriptor() == "([Ljava/lang/String;)V" {
 			return m
 		}
 	}

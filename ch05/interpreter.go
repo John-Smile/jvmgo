@@ -13,6 +13,7 @@ func interpret(methodInfo *classfile.MemberInfo)  {
 	bytecode := codeAttr.Code()
 	thread := rtda.NewThread()
 	frame := thread.NewFrame(maxLocals, maxStack)
+	fmt.Printf("frame created pc: %d\n", frame.NextPC())
 	thread.PushFrame(frame)
 	defer catchErr(frame)
 	loop(thread, bytecode)
@@ -28,9 +29,11 @@ func catchErr(frame *rtda.Frame)  {
 
 func loop(thread *rtda.Thread, byteCode []byte)  {
 	frame := thread.PopFrame()
+	fmt.Printf("frame poped pc: %d\n", frame.NextPC())
 	reader := &base.BytecodeReader{}
 	for {
 		pc := frame.NextPC()
+		fmt.Printf("pc: %d\n", pc)
 		thread.SetPC(pc)
 		reader.Reset(byteCode, pc)
 		opcode := reader.ReadUint8()
