@@ -18,3 +18,15 @@ func (self *D2I) Execute(frame *rtda.Frame)  {
 	i := int32(d)
 	stack.PushInt(i)
 }
+func (self *D2F) Execute(frame *rtda.Frame)  {
+	stack := frame.OperandStack()
+	d := stack.PopDouble()
+	i := float32(d)
+	stack.PushFloat(i)
+}
+func (self *D2L) Execute(frame *rtda.Frame)  {
+	stack := frame.OperandStack()
+	d := stack.PopDouble()
+	i := int64(d)
+	stack.PushLong(i)
+}

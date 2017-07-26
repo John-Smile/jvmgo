@@ -28,7 +28,18 @@ func _lload(frame *rtda.Frame, index uint)  {
 func (self *LLOAD) Execute(frame *rtda.Frame)  {
 	_lload(frame, uint(self.Index))
 }
+func (self *LLOAD_0) Execute(frame *rtda.Frame)  {
+	_lload(frame, 0)
+}
 func (self *LLOAD_1) Execute(frame *rtda.Frame)  {
 	_lload(frame, 1)
 }
+func (self *LLOAD_2) Execute(frame *rtda.Frame)  {
+	_lload(frame, 2)
+}
+
+func (self *LLOAD_3) Execute(frame *rtda.Frame)  {
+	_lload(frame, 3)
+}
+
 

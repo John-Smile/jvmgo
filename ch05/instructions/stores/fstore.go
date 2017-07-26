@@ -26,6 +26,16 @@ func _fstore(frame *rtda.Frame, index uint)  {
 func (self *FSTORE) Execute(frame *rtda.Frame)  {
 	_lstore(frame, uint(self.Index))
 }
+func (self *FSTORE_0) Execute(frame *rtda.Frame)  {
+	_lstore(frame, 0)
+}
+func (self *FSTORE_1) Execute(frame *rtda.Frame)  {
+	_lstore(frame, 1)
+}
 func (self *FSTORE_2) Execute(frame *rtda.Frame)  {
 	_lstore(frame, 2)
 }
+func (self *FSTORE_3) Execute(frame *rtda.Frame)  {
+	_lstore(frame, 3)
+}
+

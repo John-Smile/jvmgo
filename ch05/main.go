@@ -3,7 +3,6 @@ import "fmt"
 import "strings"
 import "jvmgo/ch05/classpath"
 import "jvmgo/ch05/classfile"
-import "jvmgo/ch05/rtda"
 
 func main() {
     cmd := parseCmd()
@@ -43,6 +42,6 @@ func getMainMethod(cf *classfile.ClassFile) *classfile.MemberInfo  {
 		if m.Name() == "main" && m.Descriptor() == "([Ljava/lang/String;) V" {
 			return m
 		}
-		return nil
 	}
+	return nil
 }

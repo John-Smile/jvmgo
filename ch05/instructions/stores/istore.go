@@ -26,6 +26,15 @@ func _istore(frame *rtda.Frame, index uint)  {
 func (self *ISTORE) Execute(frame *rtda.Frame)  {
 	_lstore(frame, uint(self.Index))
 }
+func (self *ISTORE_0) Execute(frame *rtda.Frame)  {
+	_lstore(frame, 0)
+}
+func (self *ISTORE_1) Execute(frame *rtda.Frame)  {
+	_lstore(frame, 1)
+}
 func (self *ISTORE_2) Execute(frame *rtda.Frame)  {
 	_lstore(frame, 2)
+}
+func (self *ISTORE_3) Execute(frame *rtda.Frame)  {
+	_lstore(frame, 3)
 }
