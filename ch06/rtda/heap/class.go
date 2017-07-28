@@ -1,6 +1,9 @@
 package heap
 
-import . "jvmgo/ch06/classfile"
+import (
+	. "jvmgo/ch06/classfile"
+	"strings"
+)
 
 type Class struct {
 	accessFlags          uint16
@@ -31,4 +34,22 @@ func newClass(cf *ClassFile) *Class {
 }
 func (self *Class) IsPublic() bool  {
 	return 0 != self.accessFlags & ACC_PUBLIC
+}
+func (self *Class) isAccessibleTo(other *Class) bool {
+	return self.IsPublic() || self.getPackageName() == other.getPackageName()
+}
+func (self *Class) getPackageName() string  {
+	if i := strings.LastIndex(self.name, "/"); i >= 0 {
+		return self.name[:i]
+	}
+	return ""
+}
+func (self *Class) NewObject() *Object {
+	return newObject(self)
+}
+func newObject(class *Class) *Object  {
+	return &Object{
+		class: class,
+		fields: newSlots(class.instanceSlotCount),
+	}
 }
