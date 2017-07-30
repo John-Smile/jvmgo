@@ -6,17 +6,12 @@ import "jvmgo/ch06/instructions"
 import "jvmgo/ch06/instructions/base"
 import "jvmgo/ch06/rtda"
 
-func interpret(methodInfo *classfile.MemberInfo)  {
-	codeAttr := methodInfo.CodeAttribute()
-	maxLocals := codeAttr.MaxLocals()
-	maxStack := codeAttr.MaxStack()
-	bytecode := codeAttr.Code()
+func interpret(method *classfile.MemberInfo)  {
 	thread := rtda.NewThread()
-	frame := thread.NewFrame(maxLocals, maxStack)
-	fmt.Printf("frame created pc: %d\n", frame.NextPC())
+	frame := thread.NewFrame(method)
 	thread.PushFrame(frame)
 	defer catchErr(frame)
-	loop(thread, bytecode)
+	loop(thread, method.Code())
 }
 
 func catchErr(frame *rtda.Frame)  {

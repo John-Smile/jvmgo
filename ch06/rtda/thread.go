@@ -1,4 +1,7 @@
 package rtda
+
+import "jvmgo/ch06/rtda/heap"
+
 type Thread struct {
 	pc        int
 	stack     *Stack
@@ -26,4 +29,7 @@ func (self *Thread)CurrnetFrame() *Frame  {
 }
 func (self *Thread) NewFrame(maxLocals, maxStack uint16) *Frame  {
 	return newFrame(self, uint(maxLocals), uint(maxStack))
+}
+func (self *Thread) NewFrame(method *heap.Method) *Frame  {
+	return newFrame(self, method)
 }
