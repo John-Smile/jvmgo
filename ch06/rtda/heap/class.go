@@ -1,9 +1,8 @@
 package heap
 
-import (
-	. "jvmgo/ch06/classfile"
-	"strings"
-)
+import "jvmgo/ch06/classfile"
+import	"strings"
+
 
 type Class struct {
 	accessFlags          uint16
