@@ -4,7 +4,7 @@ import "jvmgo/ch06/classfile"
 
 type Field struct {
 	ClassMember
-	constValueIndex uint
+	constValueIndex uint16
 	slotId          uint
 }
 
@@ -23,6 +23,12 @@ func (self *Field) isLongOrDouble() bool  {
 }
 func (self *Field) copyAttributes(cfField *classfile.MemberInfo)  {
 	if valAttr := cfField.ConstantValueAttribute(); valAttr != nil {
-		self.constValueIndex = uint(valAttr.ConstantValueIndex)
+		self.constValueIndex = valAttr.ConstantValueIndex()
 	}
+}
+func (self *Field) ConstValueIndex() uint16 {
+	return self.constValueIndex
+}
+func (self *Field) SlotId() uint  {
+	return self.slotId
 }

@@ -21,8 +21,17 @@ func newMethods(class *Class, cfMethods [] *classfile.MemberInfo) [] *Method {
 }
 func (self *Method) copyAttributes(cfMethod *classfile.MemberInfo)  {
 	if codeAttr := cfMethod.CodeAttribute(); codeAttr != nil {
-		self.maxStack = codeAttr.MaxStack()
-		self.maxLocals = codeAttr.MaxLocals()
+		self.maxStack = uint(codeAttr.MaxStack())
+		self.maxLocals = uint(codeAttr.MaxLocals())
 		self.code = codeAttr.Code()
 	}
+}
+func (self *Method) MaxStack() uint  {
+	return self.maxStack
+}
+func (self *Method) MaxLocals() uint  {
+	return self.maxLocals
+}
+func (self *Method) Code() [] byte  {
+	return self.code
 }

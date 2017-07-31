@@ -1,6 +1,10 @@
 package rtda
 
-import "math"
+import (
+	"math"
+	"jvmgo/ch06/rtda/heap"
+	"fmt"
+)
 
 type LocalVars [] Slot
 
@@ -14,6 +18,7 @@ func (self LocalVars) SetInt(index uint, val int32)  {
 	self[index].num = val
 }
 func (self LocalVars) GetInt(index uint) int32  {
+	fmt.Printf("LocalVars length: %d, index: %d\n", len(self), index)
 	return self[index].num
 }
 func (self LocalVars) SetFloat(index uint, val float32)  {
@@ -41,9 +46,9 @@ func (self LocalVars) GetDouble(index uint) float64  {
 	bits := uint64(self.GetLong(index))
 	return math.Float64frombits(bits)
 }
-func (self LocalVars) SetRef(index uint, ref *Object)  {
+func (self LocalVars) SetRef(index uint, ref *heap.Object)  {
 	self[index].ref = ref
 }
-func (self LocalVars) GetRef(index uint) *Object  {
+func (self LocalVars) GetRef(index uint) *heap.Object  {
 	return self[index].ref
 }

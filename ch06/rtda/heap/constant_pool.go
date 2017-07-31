@@ -50,7 +50,7 @@ func newConstantPool(class *Class, cfCp classfile.ConstantPool)  *ConstantPool {
 	}
 	return rtCp
 }
-func (self *ConstantPool) GetConstant(index uint) Constant  {
+func (self *ConstantPool) GetConstant(index uint16) Constant  {
 	if c := self.consts[index]; c != nil {
 		return c
 	}

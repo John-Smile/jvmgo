@@ -27,3 +27,28 @@ func (self *ClassMember) isAccessibleTo(d *Class) bool {
 	}
 	return d == c
 }
+func (self *ClassMember) IsPublic() bool  {
+	return 0 != self.accessFlags & ACC_PUBLIC
+}
+func (self *ClassMember) IsPrivate() bool  {
+	return 0 != self.accessFlags & ACC_PRIVATE
+}
+func (self *ClassMember) IsProtected() bool  {
+	return 0 != self.accessFlags & ACC_PROTECTED
+}
+func (self *ClassMember) IsStatic() bool  {
+	return 0 != self.accessFlags & ACC_STATIC
+}
+func (self *ClassMember) IsFinal() bool  {
+	return 0 != self.accessFlags & ACC_FINAl
+}
+
+func (self *ClassMember) Descriptor() string  {
+	return self.descriptor
+}
+func (self *ClassMember) Class() *Class  {
+	return self.class
+}
+func (self *ClassMember) Name() string  {
+	return self.name
+}

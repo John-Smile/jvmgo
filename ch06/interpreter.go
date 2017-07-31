@@ -1,12 +1,14 @@
 package main
 
 import "fmt"
-import "jvmgo/ch06/classfile"
 import "jvmgo/ch06/instructions"
 import "jvmgo/ch06/instructions/base"
-import "jvmgo/ch06/rtda"
+import (
+	"jvmgo/ch06/rtda"
+	"jvmgo/ch06/rtda/heap"
+)
 
-func interpret(method *classfile.MemberInfo)  {
+func interpret(method *heap.Method)  {
 	thread := rtda.NewThread()
 	frame := thread.NewFrame(method)
 	thread.PushFrame(frame)

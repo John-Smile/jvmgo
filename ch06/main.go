@@ -24,10 +24,7 @@ func startJVM(cmd *Cmd) {
 	if mainMethod != nil {
 		interpret(mainMethod)
 	} else {
-		fmt.Print("Main method not foud in class %s\n", cmd.class)
+		fmt.Printf("Main method not foud in class %s\n", cmd.class)
 	}
 }
 
-func (self *Class) GetMainMethod() *Method  {
-	return self.getStaticMethod("main", "[Ljava/lang/String;)V")
-}

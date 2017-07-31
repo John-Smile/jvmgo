@@ -11,6 +11,7 @@ import . "jvmgo/ch06/instructions/loads"
 import . "jvmgo/ch06/instructions/math"
 import . "jvmgo/ch06/instructions/stack"
 import . "jvmgo/ch06/instructions/stores"
+import . "jvmgo/ch06/instructions/references"
 
 var (
 	nop         = &NOP{}
@@ -201,8 +202,8 @@ func NewInstruction(opcode byte) base.Instruction  {
 		return &BIPUSH{}
 	case 0x11:
 		return &SIPUSH{}
-		// case 0x12:
-		// 	return &LDC{}
+	case 0x12:
+		return &LDC{}
 		// case 0x13:
 		// 	return &LDC_W{}
 		// case 0x14:
@@ -521,26 +522,26 @@ func NewInstruction(opcode byte) base.Instruction  {
 		// 	return areturn
 		// case 0xb1:
 		// 	return _return
-		//	case 0xb2:
-		//		return &GET_STATIC{}
-		// case 0xb3:
-		// 	return &PUT_STATIC{}
-		// case 0xb4:
-		// 	return &GET_FIELD{}
-		// case 0xb5:
-		// 	return &PUT_FIELD{}
-		//	case 0xb6:
-		//		return &INVOKE_VIRTUAL{}
-		// case 0xb7:
-		// 	return &INVOKE_SPECIAL{}
+			case 0xb2:
+				return &GET_STATIC{}
+		 case 0xb3:
+		 	return &PUT_STATIC{}
+		 case 0xb4:
+		 	return &GET_FIELD{}
+		 case 0xb5:
+		 	return &PUT_FIELD{}
+			case 0xb6:
+				return &INVOKE_VIRTUAL{}
+		 case 0xb7:
+		 	return &INVOKE_SPECIAL{}
 		// case 0xb8:
 		// 	return &INVOKE_STATIC{}
 		// case 0xb9:
 		// 	return &INVOKE_INTERFACE{}
 		// case 0xba:
 		// 	return &INVOKE_DYNAMIC{}
-		// case 0xbb:
-		// 	return &NEW{}
+	case 0xbb:
+	 	return &NEW{}
 		// case 0xbc:
 		// 	return &NEW_ARRAY{}
 		// case 0xbd:

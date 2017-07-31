@@ -27,9 +27,6 @@ func (self *Thread)PopFrame() *Frame  {
 func (self *Thread)CurrnetFrame() *Frame  {
 	return self.stack.top()
 }
-func (self *Thread) NewFrame(maxLocals, maxStack uint16) *Frame  {
-	return newFrame(self, uint(maxLocals), uint(maxStack))
-}
 func (self *Thread) NewFrame(method *heap.Method) *Frame  {
 	return newFrame(self, method)
 }

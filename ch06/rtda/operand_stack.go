@@ -1,6 +1,10 @@
 package rtda
 
-import "math"
+import (
+	"math"
+	"jvmgo/ch06/rtda/heap"
+	"fmt"
+)
 
 type OperandStack struct {
 	size   uint
@@ -16,6 +20,7 @@ func newOperandStack(maxStack uint) *OperandStack  {
 	return nil
 }
 func (self *OperandStack) PushInt(val int32)  {
+	fmt.Printf("OperandStack length: %d, current Index: %d\n", len(self.slots), self.size)
 	self.slots[self.size].num = val
 	self.size++
 }
@@ -52,11 +57,11 @@ func (self *OperandStack) PopDouble() float64  {
 	bits := uint64(self.PopLong())
 	return math.Float64frombits(bits)
 }
-func (self *OperandStack) PushRef(ref *Object) {
+func (self *OperandStack) PushRef(ref *heap.Object) {
 	self.slots[self.size].ref = ref
 	self.size++
 }
-func (self *OperandStack) PopRef() *Object  {
+func (self *OperandStack) PopRef() *heap.Object  {
 	self.size--
 	ref := self.slots[self.size].ref
 	self.slots[self.size].ref = nil

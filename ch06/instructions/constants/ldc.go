@@ -16,12 +16,12 @@ func (self *LDC) Execute(frame *rtda.Frame)  {
 	_ldc(frame, self.Index)
 }
 func (self *LDC_W) Execute(frame *rtda.Frame)  {
-	_ldc(frame, self.Index)
+	_ldc(frame, uint(self.Index))
 }
 func _ldc(frame *rtda.Frame, index uint)  {
 	stack := frame.OperandStack()
 	cp := frame.Method().Class().ConstantPool()
-	c := cp.GetConstant(index)
+	c := cp.GetConstant(uint16(index))
 	switch c.(type) {
 	case int32:
 		stack.PushInt(c.(int32))

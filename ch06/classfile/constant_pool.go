@@ -42,7 +42,7 @@ type ConstantInfo interface {
 }
 func readConstantInfo(reader *ClassReader, cp ConstantPool) ConstantInfo {
 	tag := reader.readUint8()
-	fmt.Printf("tag is %d\n", tag)
+	//fmt.Printf("tag is %d\n", tag)
 	c := newConstantInfo(tag, cp)
 	c.readInfo(reader)
 	return c
