@@ -18,7 +18,7 @@ func (self *INVOKE_VIRTUAL) Execute(frame *rtda.Frame)  {
 		case "(Z)V":
 			fmt.Printf("%v\n", stack.PopInt() != 0)
 		case "(B)V":
-			fmt.Print("%v\n", stack.PopInt())
+			fmt.Printf("%v\n", stack.PopInt())
 		case "(S)V":
 			fmt.Printf("%v\n", stack.PopInt())
 		case "(I)V":

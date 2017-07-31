@@ -26,18 +26,18 @@ func _aload(frame *rtda.Frame, index uint)  {
 	frame.OperandStack().PushRef(val)
 }
 func (self *ALOAD) Execute(frame *rtda.Frame)  {
-	_lload(frame, uint(self.Index))
+	_aload(frame, uint(self.Index))
 }
 func (self *ALOAD_0) Execute(frame *rtda.Frame)  {
-	_lload(frame, 0)
+	_aload(frame, 0)
 }
 func (self *ALOAD_1) Execute(frame *rtda.Frame)  {
-	_lload(frame, 1)
+	_aload(frame, 1)
 }
 func (self *ALOAD_2) Execute(frame *rtda.Frame)  {
-	_lload(frame, 2)
+	_aload(frame, 2)
 }
 func (self *ALOAD_3) Execute(frame *rtda.Frame)  {
-	_lload(frame, 3)
+	_aload(frame, 3)
 }
 

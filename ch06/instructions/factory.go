@@ -550,10 +550,10 @@ func NewInstruction(opcode byte) base.Instruction  {
 		// 	return arraylength
 		// case 0xbf:
 		// 	return athrow
-		// case 0xc0:
-		// 	return &CHECK_CAST{}
-		// case 0xc1:
-		// 	return &INSTANCE_OF{}
+		 case 0xc0:
+		 	return &CHECK_CAST{}
+		 case 0xc1:
+		 	return &INSTANCE_OF{}
 		// case 0xc2:
 		// 	return monitorenter
 		// case 0xc3:
