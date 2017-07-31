@@ -94,3 +94,6 @@ func (self *OperandStack) PopSlot() Slot  {
 	fmt.Printf("after exec OperandStack length: %d, current Index: %d\n", len(self.slots), self.size)
 	return self.slots[self.size]
 }
+func (self *OperandStack) GetRefFromTop(n uint) *heap.Object  {
+	return self.slots[self.size - 1 - n].ref
+}
