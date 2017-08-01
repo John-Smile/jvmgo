@@ -45,6 +45,9 @@ func (self *ClassMember) IsFinal() bool  {
 func (self *ClassMember) IsAbstract() bool  {
 	return 0 != self.accessFlags & ACC_ABSTRACT
 }
+func (self *ClassMember) IsNative() bool  {
+	return 0 != self.accessFlags & ACC_NATIVE
+}
 
 func (self *ClassMember) Descriptor() string  {
 	return self.descriptor
