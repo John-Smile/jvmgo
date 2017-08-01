@@ -151,12 +151,12 @@ var (
 	fcmpg   = &FCMPG{}
 	dcmpl   = &DCMPL{}
 	dcmpg   = &DCMPG{}
-	// ireturn = &IRETURN{}
-	// lreturn = &LRETURN{}
+	 ireturn = &IRETURN{}
+	 lreturn = &LRETURN{}
 	// freturn = &FRETURN{}
 	// dreturn = &DRETURN{}
 	// areturn = &ARETURN{}
-	// _return = &RETURN{}
+	 _return = &RETURN{}
 	// arraylength   = &ARRAY_LENGTH{}
 	// athrow        = &ATHROW{}
 	// monitorenter  = &MONITOR_ENTER{}
@@ -206,8 +206,8 @@ func NewInstruction(opcode byte) base.Instruction  {
 		return &LDC{}
 		// case 0x13:
 		// 	return &LDC_W{}
-		// case 0x14:
-		// 	return &LDC2_W{}
+		 case 0x14:
+		 	return &LDC2_W{}
 	case 0x15:
 		return &ILOAD{}
 	case 0x16:
@@ -510,18 +510,18 @@ func NewInstruction(opcode byte) base.Instruction  {
 		return &TABLE_SWITCH{}
 	case 0xab:
 		return &LOOKUP_SWITCH{}
-		// case 0xac:
-		// 	return ireturn
-		// case 0xad:
-		// 	return lreturn
+		 case 0xac:
+		 	return ireturn
+		 case 0xad:
+		 	return lreturn
 		// case 0xae:
 		// 	return freturn
 		// case 0xaf:
 		// 	return dreturn
 		// case 0xb0:
 		// 	return areturn
-		// case 0xb1:
-		// 	return _return
+		 case 0xb1:
+		 	return _return
 			case 0xb2:
 				return &GET_STATIC{}
 		 case 0xb3:
@@ -534,10 +534,10 @@ func NewInstruction(opcode byte) base.Instruction  {
 				return &INVOKE_VIRTUAL{}
 		 case 0xb7:
 		 	return &INVOKE_SPECIAL{}
-		// case 0xb8:
-		// 	return &INVOKE_STATIC{}
-		// case 0xb9:
-		// 	return &INVOKE_INTERFACE{}
+		 case 0xb8:
+		 	return &INVOKE_STATIC{}
+		 case 0xb9:
+		 	return &INVOKE_INTERFACE{}
 		// case 0xba:
 		// 	return &INVOKE_DYNAMIC{}
 	case 0xbb:

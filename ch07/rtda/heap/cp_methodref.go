@@ -13,9 +13,9 @@ func newMethodRef(cp *ConstantPool, refInfo *classfile.ConstantMethodrefInfo)  *
 	ref.copyMemberRefInfo(&refInfo.ConstantMemberrefInfo)
 	return ref
 }
-func (self *MethodRef) ResolvedMethodRef() *Method  {
+func (self *MethodRef) ResolvedMethod() *Method  {
 	if self.method == nil {
-		self.resolveClassRef()
+		self.resolveMethodRef()
 	}
 	return self.method
 }

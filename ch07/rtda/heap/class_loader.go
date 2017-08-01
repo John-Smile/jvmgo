@@ -6,11 +6,13 @@ import "jvmgo/ch07/classpath"
 
 type ClassLoader struct {
 	cp                    *classpath.ClassPath
+	verboseFlag           bool
 	classMap              map[string]*Class
 }
-func NewClassLoader(cp *classpath.ClassPath) *ClassLoader {
+func NewClassLoader(cp *classpath.ClassPath, verboseFlag bool) *ClassLoader {
 	return &ClassLoader {
 		cp:              cp,
+		verboseFlag:     verboseFlag,
 		classMap:        make(map[string]*Class),
 	}
 }

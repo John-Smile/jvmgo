@@ -30,5 +30,12 @@ func (self *IRETURN) Execute(frame *rtda.Frame)  {
 	currentFrame := thread.PopFrame()
 	invokerFrame := thread.TopFrame()
 	retVal := currentFrame.OperandStack().PopInt()
-	invokerFrame.OperandStack.PushInt(retVal)
+	invokerFrame.OperandStack().PushInt(retVal)
+}
+func (self *LRETURN) Execute(frame *rtda.Frame)  {
+	thread := frame.Thread()
+	currentFrame := thread.PopFrame()
+	invokerFrame := thread.TopFrame()
+	retVal := currentFrame.OperandStack().PopLong()
+	invokerFrame.OperandStack().PushLong(retVal)
 }

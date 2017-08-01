@@ -13,7 +13,7 @@ type INVOKE_SPECIAL struct{
 func (self *INVOKE_SPECIAL) Execute(frame *rtda.Frame)  {
 	currentClass := frame.Method().Class()
 	cp := currentClass.ConstantPool()
-	methodRef := cp.GetConstant(self.Index).(*heap.MemberRef)
+	methodRef := cp.GetConstant(self.Index).(*heap.MethodRef)
 	resolvedClass := methodRef.ResolvedClass()
 	resolvedMethod := methodRef.ResolvedMethod()
 
@@ -24,21 +24,21 @@ func (self *INVOKE_SPECIAL) Execute(frame *rtda.Frame)  {
 		panic("java.lang.IncompatibleClassChangeError")
 	}
 
-	ref := frame.OperandStack().GetRefFromTop(resolvedMethod.ArgSlotCount())
+	ref := frame.OperandStack().GetRefFromTop(resolvedMethod.ArgSlotCount() - 1)
 	if ref == nil {
 		panic("java.lang.NullPointerException")
 	}
 
 	if resolvedMethod.IsProtected() &&
 	   resolvedMethod.Class().IsSuperClassOf(currentClass) &&
-	   resolvedMethod.Class().GetPackageName() != currentCLass.GetPackageName() &&
+	   resolvedMethod.Class().GetPackageName() != currentClass.GetPackageName() &&
 	   ref.Class() != currentClass && !ref.Class().IsSubClassOf(currentClass) {
 		panic("java.lang.IllegalAccessError")
 	}
 
 	methodToBeInvoked := resolvedMethod
 	if currentClass.IsSuper() &&
-	    resovledClass.IsSuperClassOf(currentClass) &&
+	    resolvedClass.IsSuperClassOf(currentClass) &&
 	    resolvedMethod.Name() != "<init>" {
 		methodToBeInvoked = heap.LookupMethodInClass(currentClass.SuperClass(), methodRef.Name(), methodRef.Descriptor())
 	}

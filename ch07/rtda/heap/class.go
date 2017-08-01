@@ -37,16 +37,19 @@ func newClass(cf *classfile.ClassFile) *Class {
 func (self *Class) IsPublic() bool  {
 	return 0 != self.accessFlags & ACC_PUBLIC
 }
+func (self *Class) IsSuper() bool  {
+	return 0 != self.accessFlags & ACC_SUPER
+}
 func (self *Class) IsInterface() bool  {
 	return 0 != self.accessFlags & ACC_INTERFACE
 }
 func (self *Class) IsAbstract() bool  {
 	return 0 != self.accessFlags & ACC_ABSTRACT
 }
-func (self *Class) isAccessibleTo(other *Class) bool {
-	return self.IsPublic() || self.getPackageName() == other.getPackageName()
+func (self *Class) IsAccessibleTo(other *Class) bool {
+	return self.IsPublic() || self.GetPackageName() == other.GetPackageName()
 }
-func (self *Class) getPackageName() string  {
+func (self *Class) GetPackageName() string  {
 	if i := strings.LastIndex(self.name, "/"); i >= 0 {
 		return self.name[:i]
 	}
@@ -60,6 +63,13 @@ func newObject(class *Class) *Object  {
 		class: class,
 		fields: newSlots(class.instanceSlotCount),
 	}
+}
+
+func (self *Class) Name() string  {
+	return self.name
+}
+func (self *Class) SuperClass() *Class  {
+	return self.superClass
 }
 func (self *Class) ConstantPool() *ConstantPool  {
 	return self.constantPool

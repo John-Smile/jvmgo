@@ -3,12 +3,14 @@ import "flag"
 import "fmt"
 import "os"
 type Cmd struct {
-    helpFlag       bool
-    versionFlag    bool
-    cpOption       string
-    XjreOption     string
-    class          string
-    args           [] string
+    helpFlag                          bool
+    versionFlag                       bool
+    verboseClassFlag                  bool
+    verboseInstFlag                   bool
+    cpOption                          string
+    XjreOption                        string
+    class                             string
+    args                              [] string
 }
 
 func parseCmd() *Cmd {
