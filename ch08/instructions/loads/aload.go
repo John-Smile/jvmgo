@@ -3,6 +3,7 @@ package loads
 import (
 	"jvmgo/ch08/instructions/base"
 	"jvmgo/ch08/rtda"
+	"fmt"
 )
 
 type ALOAD struct {
@@ -32,7 +33,9 @@ func (self *ALOAD_0) Execute(frame *rtda.Frame)  {
 	_aload(frame, 0)
 }
 func (self *ALOAD_1) Execute(frame *rtda.Frame)  {
+	fmt.Printf("BEFORE ALOAD_1 OperandStack: %v, resolvedMethod\n", frame.OperandStack())
 	_aload(frame, 1)
+	fmt.Printf("AFTER ALOAD_1 OperandStack: %v, resolvedMethod\n", frame.OperandStack())
 }
 func (self *ALOAD_2) Execute(frame *rtda.Frame)  {
 	_aload(frame, 2)

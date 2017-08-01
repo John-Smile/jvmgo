@@ -13,6 +13,7 @@ func (self *BytecodeReader) Reset(code [] byte, pc int)  {
 	self.pc = pc
 }
 func (self *BytecodeReader) ReadUint8() uint8  {
+	//fmt.Printf("ReadUint8 byte[]:%v, len:%d, index:%d\n", self.code, len(self.code), self.pc)
 	i := self.code[self.pc]
 	self.pc++
 	return i

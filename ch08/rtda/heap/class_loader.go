@@ -1,6 +1,5 @@
 package heap
 
-import "fmt"
 import "jvmgo/ch08/classfile"
 import "jvmgo/ch08/classpath"
 
@@ -44,7 +43,8 @@ func (self *ClassLoader) loadNonArrayClass(name string) *Class  {
 	data, entry := self.readClass(name)
 	class := self.defineClass(data)
 	link(class)
-	fmt.Printf("[Loaded %s from %s]\n", name, entry)
+	//fmt.Printf("[Loaded %s from %s]\n", name, entry)
+	entry.String()
 	return class
 }
 func (self *ClassLoader) readClass(name string) ([] byte, classpath.Entry)  {

@@ -3,7 +3,6 @@ package heap
 import "jvmgo/ch08/classfile"
 import (
 	"strings"
-	"fmt"
 )
 
 
@@ -75,11 +74,14 @@ func (self *Class) SuperClass() *Class  {
 func (self *Class) ConstantPool() *ConstantPool  {
 	return self.constantPool
 }
+func (self *Class) Loader() *ClassLoader  {
+	return self.loader
+}
 
 func (self *Class) getStaticMethod(name, descriptor string) *Method  {
 	for _, method := range self.methods {
-		fmt.Printf("IsStatic: %s, name: %s, descriptor: %s\n", method.IsStatic(), method.name, method.descriptor)
-		fmt.Printf("IsStatic: %s, name: %s, descriptor: %s\n", method.IsStatic(), method.name == name, method.descriptor == descriptor)
+		//fmt.Printf("IsStatic: %s, name: %s, descriptor: %s\n", method.IsStatic(), method.name, method.descriptor)
+		//fmt.Printf("IsStatic: %s, name: %s, descriptor: %s\n", method.IsStatic(), method.name == name, method.descriptor == descriptor)
 		if method.IsStatic() &&
 		   method.name == name && method.descriptor == descriptor {
 			return method
@@ -101,4 +103,28 @@ func (self *Class) StartInit()  {
 }
 func (self *Class) GetClinitMethod() *Method  {
 	return self.getStaticMethod("<clinit>", "()V")
+}
+func (self *Class) ArrayClass() *Class  {
+	arrayClassName := getArrayClassName(self.name)
+	return self.loader.LoadClass(arrayClassName)
+}
+func (self *Class) ComponentClass() *Class  {
+	componentClassName := getComponentClassName(self.name)
+	return self.loader.LoadClass(componentClassName)
+}
+func getComponentClassName(className string) string  {
+	if className[0] == '[' {
+		componentTypeDescriptor := className[1:]
+		return toClassName(componentTypeDescriptor)
+	}
+	panic("Not array: " + className)
+}
+func (self *Class) isJlObject() bool  {
+	return self.name == "java/lang/Object"
+}
+func (self *Class) isJlCloneable() bool {
+	return self.name == "java/lang/Cloneable"
+}
+func (self *Class) isJioSerializable() bool  {
+	return self.name == "java/io/Serializable"
 }

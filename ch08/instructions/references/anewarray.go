@@ -20,5 +20,4 @@ func (self *ANEW_ARRAY) Execute(frame *rtda.Frame)  {
 	arrClass := componentClass.ArrayClass()
 	arr := arrClass.NewArray(uint(count))
 	stack.PushRef(arr)
-
 }

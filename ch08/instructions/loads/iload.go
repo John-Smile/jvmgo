@@ -1,7 +1,10 @@
 package loads
 
 import "jvmgo/ch08/rtda"
-import "jvmgo/ch08/instructions/base"
+import (
+	"jvmgo/ch08/instructions/base"
+	"fmt"
+)
 
 type ILOAD struct {
 	base.Index8Instruction
@@ -24,7 +27,9 @@ func _iload(frame *rtda.Frame, index uint)  {
 	frame.OperandStack().PushInt(val)
 }
 func (self *ILOAD) Execute(frame *rtda.Frame)  {
+	fmt.Printf("BEFORE ILOAD OperandStack: %v, resolvedMethod\n", frame.OperandStack())
 	_iload(frame, uint(self.Index))
+	fmt.Printf("AFTER ILOAD OperandStack: %v, resolvedMethod\n", frame.OperandStack())
 }
 func (self *ILOAD_0) Execute(frame *rtda.Frame)  {
 	_iload(frame, 0)

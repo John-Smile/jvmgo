@@ -20,6 +20,10 @@ func (self *INVOKE_VIRTUAL) Execute(frame *rtda.Frame)  {
 	ref := frame.OperandStack().GetRefFromTop(resolvedMethod.ArgSlotCount() - 1)
 	if ref == nil {
 		fmt.Printf("OperandStack: %v, resolvedMethod.ArgSlotCount: %d\n", frame.OperandStack(), resolvedMethod.ArgSlotCount())
+		if methodRef.Name() == "println" {
+			_println(frame.OperandStack(), methodRef.Descriptor())
+			return
+		}
 		panic("java.lang.NullPointerException")
 	}
 	if resolvedMethod.IsProtected() &&
@@ -31,10 +35,6 @@ func (self *INVOKE_VIRTUAL) Execute(frame *rtda.Frame)  {
 
 	methodToBeInvoked := heap.LookupMethodInClass(ref.Class(), methodRef.Name(), methodRef.Descriptor())
 	if methodToBeInvoked == nil || methodToBeInvoked.IsAbstract() {
-		if methodRef.Name() == "println" {
-			_println(frame.OperandStack(), methodRef.Descriptor())
-			return
-		}
 		panic("java.lang.AbstractMethodError")
 	}
 	base.InvokeMethod(frame, methodToBeInvoked)

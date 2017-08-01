@@ -44,9 +44,9 @@ func loop(thread *rtda.Thread, logInst bool)  {
 		inst := instructions.NewInstruction(opcode)
 		inst.FetchOperands(reader)
 		frame.SetNextPC(reader.PC())
-		if (logInst) {
+		//if (logInst) {
 			logInstruction(frame, inst)
-		}
+		//}
 		inst.Execute(frame)
 		if thread.IsStackEmpty() {
 			break

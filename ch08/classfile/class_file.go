@@ -34,7 +34,7 @@ func (self *ClassFile) read(reader *ClassReader) {
 	self.readAndCheckMagic(reader)
 	self.readAndCheckVersion(reader)
 	fmt.Printf("major version is %d\n", self.majorVersion)
-	fmt.Printf("minor version is %d\n", self.minorVersion)
+	//fmt.Printf("minor version is %d\n", self.minorVersion)
 	self.constantPool = readConstantPool(reader)
 	self.accessFlags = reader.readUint16()
 	self.thisClass = reader.readUint16()
@@ -49,7 +49,7 @@ func (self *ClassFile) readAndCheckMagic(reader *ClassReader) {
 	if magic != 0xCAFEBABE {
 		panic("java.lang.ClassFormatError: magic!")
 	} else {
-		fmt.Printf("magic number is %d\n", magic)
+		//fmt.Printf("magic number is %d\n", magic)
 	}
 }
 func (self *ClassFile) readAndCheckVersion(reader *ClassReader) {
