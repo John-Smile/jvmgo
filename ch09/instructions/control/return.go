@@ -39,6 +39,13 @@ func (self *LRETURN) Execute(frame *rtda.Frame)  {
 	retVal := currentFrame.OperandStack().PopLong()
 	invokerFrame.OperandStack().PushLong(retVal)
 }
+func (self *DRETURN) Execute(frame *rtda.Frame)  {
+	thread := frame.Thread()
+	currentFrame := thread.PopFrame()
+	invokerFrame := thread.TopFrame()
+	retVal := currentFrame.OperandStack().PopDouble()
+	invokerFrame.OperandStack().PushDouble(retVal)
+}
 func (self *ARETURN) Execute(frame *rtda.Frame)  {
 	thread := frame.Thread()
 	currentFrame := thread.PopFrame()

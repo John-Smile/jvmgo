@@ -155,7 +155,7 @@ var (
 	 ireturn = &IRETURN{}
 	 lreturn = &LRETURN{}
 	// freturn = &FRETURN{}
-	// dreturn = &DRETURN{}
+	 dreturn = &DRETURN{}
 	 areturn = &ARETURN{}
 	 _return = &RETURN{}
 	 arraylength   = &ARRAY_LENGTH{}
@@ -517,8 +517,8 @@ func NewInstruction(opcode byte) base.Instruction  {
 		 	return lreturn
 		// case 0xae:
 		// 	return freturn
-		// case 0xaf:
-		// 	return dreturn
+		 case 0xaf:
+		 	return dreturn
 		 case 0xb0:
 		 	return areturn
 		 case 0xb1:
