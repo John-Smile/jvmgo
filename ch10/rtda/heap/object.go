@@ -27,3 +27,6 @@ func (self *Object) GetRefVar(name, descriptor string) *Object  {
 	slots := self.data.(Slots)
 	return slots.GetRef(field.slotId)
 }
+func (self *Object) SetExtra(extra interface{})  {
+	self.extra = extra
+}

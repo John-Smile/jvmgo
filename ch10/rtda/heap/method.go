@@ -70,7 +70,7 @@ func (self *Method) GetLineNumber(pc int) int  {
 func (self *Method) FindExceptionHandler(exClass *Class, pc int) int {
 	handler := self.exceptionTable.findExceptionHandler(exClass, pc)
 	if handler != nil {
-		return handler.handlerPC
+		return handler.handlerPc
 	}
 	return -1
 }
