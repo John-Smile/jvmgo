@@ -51,6 +51,17 @@ func (self *CASTORE) Execute(frame *rtda.Frame)  {
 	checkIndex(len(chars), index)
 	chars[index] = uint16(val)
 }
+func (self *AASTORE) Execute(frame *rtda.Frame)  {
+	stack := frame.OperandStack()
+	ref := stack.PopRef()
+	index := stack.PopInt()
+	arrRef := stack.PopRef()
+
+	checkNotNil(arrRef)
+	refs := arrRef.Refs()
+	checkIndex(len(refs), index)
+	refs[index] = ref
+}
 func checkNotNil(ref *heap.Object)  {
 	if ref == nil {
 		panic("java.lang.NullPointerException")

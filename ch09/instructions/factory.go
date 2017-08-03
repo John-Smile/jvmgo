@@ -83,7 +83,7 @@ var (
 	// lastore  = &LASTORE{}
 	// fastore  = &FASTORE{}
 	// dastore  = &DASTORE{}
-	// aastore  = &AASTORE{}
+	 aastore  = &AASTORE{}
 	// bastore  = &BASTORE{}
 	 castore  = &CASTORE{}
 	// sastore  = &SASTORE{}
@@ -154,7 +154,7 @@ var (
 	dcmpg   = &DCMPG{}
 	 ireturn = &IRETURN{}
 	 lreturn = &LRETURN{}
-	// freturn = &FRETURN{}
+	 freturn = &FRETURN{}
 	 dreturn = &DRETURN{}
 	 areturn = &ARETURN{}
 	 _return = &RETURN{}
@@ -333,8 +333,8 @@ func NewInstruction(opcode byte) base.Instruction  {
 		// 	return fastore
 		// case 0x52:
 		// 	return dastore
-		// case 0x53:
-		// 	return aastore
+		 case 0x53:
+		 	return aastore
 		// case 0x54:
 		// 	return bastore
 		 case 0x55:
@@ -515,8 +515,8 @@ func NewInstruction(opcode byte) base.Instruction  {
 		 	return ireturn
 		 case 0xad:
 		 	return lreturn
-		// case 0xae:
-		// 	return freturn
+		 case 0xae:
+		 	return freturn
 		 case 0xaf:
 		 	return dreturn
 		 case 0xb0:
