@@ -14,9 +14,6 @@ func (self *Object) Fields() Slots  {
 func (self *Object) Class() *Class  {
 	return self.class
 }
-func (self *Object) Data() interface{}  {
-	return self.data
-}
 func (self *Object) Extra() interface{}  {
 	return self.extra
 }
